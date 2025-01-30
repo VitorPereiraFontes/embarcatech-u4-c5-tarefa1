@@ -6,6 +6,12 @@
 #define RED_LED_PIN 13 
 #define GREEN_LED_PIN 11
 
+// Define o delay, em milissegundos, utilizado para o disparo da função de callback
+#define CALLBACK_DELAY 3000 // 3 segundos
+
+// Instancia a estrutura base para o timer
+repeating_timer_t repeating_timer_struct;
+
 bool RGB_LED_callback(repeating_timer_t* repeating_timer_struct){
     static uint counter = 0; // Contador cíclico, para o controle dos LED's
 
@@ -49,6 +55,12 @@ int main()
     gpio_set_dir(RED_LED_PIN,GPIO_OUT);
     gpio_init(GREEN_LED_PIN);
     gpio_set_dir(GREEN_LED_PIN,GPIO_OUT);
+
+    // Acende o LED vermelho
+    gpio_put(RED_LED_PIN,true);
+
+    // Configura o timer repetitivo de hardware para chamar o callback que controlará os LED's
+    add_repeating_timer_ms(CALLBACK_DELAY,RGB_LED_callback,NULL,&repeating_timer_struct);
 
     while (true) {
         sleep_ms(1000); // Delay de 1 segundo
