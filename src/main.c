@@ -3,7 +3,7 @@
 
 // Define os pinos GPIO ao qual os leds estão conectados
 #define RED_LED_PIN 13 
-#define GREEN_LED_PIN 12
+#define GREEN_LED_PIN 11
 
 int main()
 {
