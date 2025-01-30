@@ -17,5 +17,7 @@ int main()
 
     while (true) {
         sleep_ms(1000); // Delay de 1 segundo
+        uint32_t seconds_since_boot = to_ms_since_boot(get_absolute_time()) / 1000; // Obtém o tempo desde o boot do microcontrolador, converte para milissegundos e depois para segundos.
+        printf("Segundos desde o boot: %d\n",seconds_since_boot);
     }
 }
