@@ -1,30 +1,21 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "hardware/timer.h"
-#include "hardware/clocks.h"
 
-int64_t alarm_callback(alarm_id_t id, void *user_data) {
-    // Put your timeout handler code in here
-    return 0;
-}
-
-
-
+// Define os pinos GPIO ao qual os leds estão conectados
+#define RED_LED_PIN 13 
+#define GREEN_LED_PIN 12
 
 int main()
 {
-    stdio_init_all();
+    stdio_init_all(); // Inicializa a comunicação serial
 
-    // Timer example code - This example fires off the callback after 2000ms
-    add_alarm_in_ms(2000, alarm_callback, NULL, false);
-    // For more examples of timer use see https://github.com/raspberrypi/pico-examples/tree/master/timer
-
-    printf("System Clock Frequency is %d Hz\n", clock_get_hz(clk_sys));
-    printf("USB Clock Frequency is %d Hz\n", clock_get_hz(clk_usb));
-    // For more examples of clocks use see https://github.com/raspberrypi/pico-examples/tree/master/clocks
+    // Inicializa as GPIO's dos LED's como saída em nivel baixo
+    gpio_init(RED_LED_PIN);
+    gpio_set_dir(RED_LED_PIN,GPIO_OUT);
+    gpio_init(GREEN_LED_PIN);
+    gpio_set_dir(GREEN_LED_PIN,GPIO_OUT);
 
     while (true) {
-        printf("Hello, world!\n");
-        sleep_ms(1000);
+        sleep_ms(1000); // Delay de 1 segundo
     }
 }
