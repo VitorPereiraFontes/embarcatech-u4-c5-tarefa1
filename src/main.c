@@ -1,9 +1,44 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "hardware/timer.h"
 
 // Define os pinos GPIO ao qual os leds estão conectados
 #define RED_LED_PIN 13 
 #define GREEN_LED_PIN 11
+
+bool RGB_LED_callback(repeating_timer_t* repeating_timer_struct){
+    static uint counter = 0; // Contador cíclico, para o controle dos LED's
+
+    printf("Passaram-se 3 segundos, mudano o estado dos LED's!\n");
+
+    switch (counter){
+    case 0:
+        // Apaga os demais LED's e acende o amarelo
+        gpio_put(RED_LED_PIN,true);
+        gpio_put(GREEN_LED_PIN,true);
+        
+        counter++; // Incrementa o contador
+        break;
+
+    case 1:
+        // Apaga os demais LED's e acende o verde
+        gpio_put(RED_LED_PIN,false);
+        gpio_put(GREEN_LED_PIN,true);
+
+        counter++; // Incrementa o contador
+    break;
+    
+    default:
+        // Apaga os demais LED's e acende o vermelho
+        gpio_put(RED_LED_PIN,true);
+        gpio_put(GREEN_LED_PIN,false);
+        // Reinicia o contador
+        counter = 0;
+        break;
+    }
+
+    return true; // Retorna 'true' para manter o timer habilitado
+}
 
 int main()
 {
