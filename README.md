@@ -17,6 +17,10 @@ O presente projeto deverá atender aos seguintes requerimentos:
 
 Seguem os vídeos de demonstração do projeto, tanto no simulador Wokwi quanto na placa BitDogLab.
 
+https://github.com/user-attachments/assets/45addeaa-e400-4dde-a670-0a24c01789db
+
+https://github.com/user-attachments/assets/797483fc-fcbe-4c90-8d12-8897fae61bdc
+
 ## Instruções
 
 Para que o projeto funcione em sua máquina, é necessário ter a extensão Raspberry Pi Pico Project instalada no VSCode.
